@@ -64,12 +64,12 @@ class ParkirController extends Controller
                $data = $check;
                $code = 200;
             }else{
-               $data = "Truk Sudah Keluar";
+               $data = ['is_parking' => 0];
                $code = 200;
             }
         }else{
-           $data = "Truk Tidak Terdaftar";
-           $code = 500;
+           $data = ['is_parking' => 3];
+           $code = 200;
         }
          
         return response()->json($data,$code);

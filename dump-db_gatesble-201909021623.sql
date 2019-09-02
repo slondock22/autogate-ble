@@ -27,7 +27,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_30_134357_create_trucks_table',1),(4,'2019_09_01_163943_create_monitorings_table',1);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_30_134357_create_trucks_table',1),(4,'2019_09_01_163943_create_monitorings_table',1),(5,'2019_09_02_101317_add_is_auth',2),(6,'2019_09_02_104726_add_parking_status',3);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,15 +50,16 @@ DROP TABLE IF EXISTS `monitorings`;
 CREATE TABLE `monitorings` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `id_truck` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gate_in` datetime NOT NULL,
-  `gate_out` datetime NOT NULL,
-  `hours` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `gate_in` datetime DEFAULT NULL,
+  `gate_out` datetime DEFAULT NULL,
+  `hours` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `is_parking` char(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +68,6 @@ CREATE TABLE `monitorings` (
 
 LOCK TABLES `monitorings` WRITE;
 /*!40000 ALTER TABLE `monitorings` DISABLE KEYS */;
-INSERT INTO `monitorings` VALUES (1,'1','2019-09-01 17:21:08','2019-09-01 17:21:08',1,4000,1,'2019-09-01 10:21:08','2019-09-01 10:21:08');
 /*!40000 ALTER TABLE `monitorings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,8 +113,9 @@ CREATE TABLE `trucks` (
   `minor` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `is_auth` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +124,7 @@ CREATE TABLE `trucks` (
 
 LOCK TABLES `trucks` WRITE;
 /*!40000 ALTER TABLE `trucks` DISABLE KEYS */;
-INSERT INTO `trucks` VALUES (1,'B 4324 JKM','Wawan','PT Gemilang Buana','Otomotif','e33447b1-9d75-4901-bc90-0a1481083533',560,554,'2019-09-01 10:21:08','2019-09-01 10:21:08');
+INSERT INTO `trucks` VALUES (1,'B 4324 JKM','Wawan','PT Gemilang Buana','Otomotif','e33447b1-9d75-4901-bc90-0a1481083533',560,554,'2019-09-01 10:21:08','2019-09-01 10:21:08','1'),(2,'B 3720 USA','Supriyanto','PT Mercedes Benz Indonesia','Otomotif','e33447b1-9d75-4901-bc90-0a1481083532',560,555,'2019-09-02 03:24:28','2019-09-02 03:24:28','0');
 /*!40000 ALTER TABLE `trucks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-02  9:36:44
+-- Dump completed on 2019-09-02 16:23:16
