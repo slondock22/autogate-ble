@@ -9,7 +9,7 @@ class Truk extends Model
     protected $table = 'trucks';
 
     protected $fillable = [
-        'no_polisi', 'nama_supir', 'nama_perusahaan', 'bidang_perusahaan', 'uuid', 'major', 'minor',
+        'no_polisi', 'nama_supir', 'nama_perusahaan', 'bidang_perusahaan', 'uuid', 'major', 'minor', 'is_auth',
     ];
 
     public function monitoring()

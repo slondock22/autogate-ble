@@ -22,6 +22,7 @@ class CreateTrucksTable extends Migration
             $table->uuid('uuid');
             $table->integer('major');
             $table->integer('minor');
+            $table->char('is_auth');
             $table->timestamps();
         });
     }

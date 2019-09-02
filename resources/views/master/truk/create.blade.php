@@ -96,6 +96,19 @@
                                         </span>
                                     @endif
                                 </div>
+
+                                <div class="form-group{{ $errors->has('is_auth') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="is_auth">{{ __('Authorized') }}</label>
+                                    <select class="form-control form-control-alternative{{ $errors->has('is_auth') ? ' is-invalid' : '' }}" name="is_auth" id="is_auth" required>
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                    @if ($errors->has('is_auth'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('is_auth') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                                 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>

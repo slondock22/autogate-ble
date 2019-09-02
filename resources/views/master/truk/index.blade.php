@@ -41,6 +41,7 @@
                                     <th scope="col">{{ __('UUID') }}</th>
                                     <th scope="col">{{ __('Major') }}</th>
                                     <th scope="col">{{ __('Minor') }}</th>
+                                    <th scope="col">{{ __('Authorized') }}</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -55,6 +56,13 @@
                                         <td>{{ $truks->uuid }}</td>
                                         <td>{{ $truks->major }}</td>
                                         <td>{{ $truks->minor }}</td>
+                                        <td>
+                                            @if($truks->is_auth)
+                                            <span class="badge badge-success">{{__('Authorized')}}</span>
+                                            @else 
+                                            <span class="badge badge-danger">{{__('Not Authorized')}}</span>
+                                            @endif
+                                        </td>
 
                                         <td class="text-right">
                                             <div class="dropdown">

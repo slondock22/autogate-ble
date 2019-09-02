@@ -46,6 +46,9 @@ class TrukRequest extends FormRequest
             ],
             'minor' => [
                 'required', 'max:4'
+            ],
+            'is_auth' => [
+                'required'
             ]
         ];
     }

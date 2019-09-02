@@ -13,7 +13,7 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="{{ asset('argon') }}/img/theme/tukangparkir.jpg" class="rounded-circle img-thumbnail">
+                                    <img src="{{ asset('argon') }}/img/theme/boy.png" class="rounded-circle img-thumbnail">
                                 </a>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
 
                             <div class="row pt-md-4 pb-md-4" style="background-color:#f7fafc">
                                 <div class="col-lg-12">
-                                    <h1 style="font-size:3em; font-weight:800">{{ __('Rp.45.000,-') }}</h1>
+                                    <h1 style="font-size:3em; font-weight:800" id="total_biaya">{{ __('Rp.0,-') }}</h1>
                                 </div>
                             </div>
 
@@ -75,24 +75,20 @@
                         <div class="row align-items-center">
                             <h3 class="col-12 mb-0">{{ __('Detail Informasi') }}</h3>
                         </div>
+                        <div class="alert alert-dismissible fade show mt-3" role="alert" style="display:none;" id="notif">
+                            <span id="notif-text"></span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     </div>
                     <div class="card-body">
                        
                         <h6 class="heading-small text-muted mb-4">{{ __('Informasi Parkir') }}</h6>
-                        
-                        @if (session('status'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('status') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
-
-                       
+               
                         <div class="form-group{{ $errors->has('tgl_masuk') ? ' has-danger' : '' }}">
                             <label class="form-control-label" for="tgl_masuk">{{ __('Tanggal Masuk') }}</label>
-                            <input type="text" name="tgl_masuk" id="tgl_masuk" class="form-control form-control-alternative{{ $errors->has('tgl_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal Masuk') }}" value="{{ ('Jum\'at, 30 Agustus 2019')}}" required autofocus>
+                            <input type="text" name="tgl_masuk" id="tgl_masuk" class="form-control form-control-alternative{{ $errors->has('tgl_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal Masuk') }}" value="" required autofocus>
 
                             @if ($errors->has('tgl_masuk'))
                                 <span class="invalid-feedback" role="alert">
@@ -102,7 +98,7 @@
                         </div>
                         <div class="form-group{{ $errors->has('jam_masuk') ? ' has-danger' : '' }}">
                             <label class="form-control-label" for="jam_masuk">{{ __('Jam Masuk') }}</label>
-                            <input type="text" name="jam_masuk" id="jam_masuk" class="form-control form-control-alternative{{ $errors->has('jam_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Jam Masuk') }}" value="{{ ('11:30:31') }}" required>
+                            <input type="text" name="jam_masuk" id="jam_masuk" class="form-control form-control-alternative{{ $errors->has('jam_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Jam Masuk') }}" value="" required>
 
                             @if ($errors->has('jam_masuk'))
                                 <span class="invalid-feedback" role="alert">
@@ -110,9 +106,19 @@
                                 </span>
                             @endif
                         </div>
+                        <div class="form-group{{ $errors->has('tgl_keluar') ? ' has-danger' : '' }}">
+                            <label class="form-control-label" for="tgl_keluar">{{ __('Tanggal Keluar') }}</label>
+                            <input type="text" name="tgl_keluar" id="tgl_keluar" class="form-control form-control-alternative{{ $errors->has('tgl_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal Keluar') }}" value="" required autofocus>
+
+                            @if ($errors->has('tgl_keluar'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('tgl_keluar') }}</strong>
+                                </span>
+                            @endif
+                        </div>
                         <div class="form-group{{ $errors->has('jam_keluar') ? ' has-danger' : '' }}">
                             <label class="form-control-label" for="jam_keluar">{{ __('Jam Keluar') }}</label>
-                            <input type="text" name="jam_keluar" id="jam_keluar" class="form-control form-control-alternative{{ $errors->has('jam_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Jam Keluar') }}" value="{{ ('15:30:31') }}" required>
+                            <input type="text" name="jam_keluar" id="jam_keluar" class="form-control form-control-alternative{{ $errors->has('jam_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Jam Keluar') }}" value="" required>
 
                             @if ($errors->has('jam_keluar'))
                                 <span class="invalid-feedback" role="alert">
@@ -120,13 +126,13 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group{{ $errors->has('tarif_flat') ? ' has-danger' : '' }}">
-                            <label class="form-control-label" for="tarif_flat">{{ __('Tarif Flat') }}</label>
-                            <input type="text" name="tarif_flat" id="tarif_flat" class="form-control form-control-alternative{{ $errors->has('tarif_flat') ? ' is-invalid' : '' }}" placeholder="{{ __('Tarif Flat') }}" value="{{ __('Rp.4.000,-') }}" required>
+                        <div class="form-group{{ $errors->has('selisih_jam') ? ' has-danger' : '' }}">
+                            <label class="form-control-label" for="selisih_jam">{{ __('Selisih Jam') }}</label>
+                            <input type="text" name="selisih_jam" id="selisih_jam" class="form-control form-control-alternative{{ $errors->has('selisih_jam') ? ' is-invalid' : '' }}" placeholder="{{ __('Selisih Jam') }}" value="" required>
 
-                            @if ($errors->has('tarif_flat'))
+                            @if ($errors->has('selisih_jam'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('tarif_flat') }}</strong>
+                                    <strong>{{ $errors->first('selisih_jam') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -168,7 +174,7 @@
     
                                 <div class="form-group{{ $errors->has('nama_perusahaan') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="nama_perusahaan">{{ __('Nama Perusahaan') }}</label>
-                                    <input type="password" name="nama_perusahaan" id="nama_perusahaan" class="form-control form-control-alternative{{ $errors->has('nama_perusahaan') ? ' is-invalid' : '' }}" placeholder="{{ __('Nama Perusahaan') }}" value="" required>
+                                    <input type="text" name="nama_perusahaan" id="nama_perusahaan" class="form-control form-control-alternative{{ $errors->has('nama_perusahaan') ? ' is-invalid' : '' }}" placeholder="{{ __('Nama Perusahaan') }}" value="" required>
                                     
                                     @if ($errors->has('nama_perusahaan'))
                                         <span class="invalid-feedback" role="alert">
@@ -219,5 +225,44 @@
                 document.getElementById("time").innerHTML = hari[D1]+", "+D2+" "+bulan[M]+" "+Y+"<br />"+h+":"+m+":"+s;
 }
   setInterval(time, 1000);
+</script>
+<script src="https://js.pusher.com/4.4/pusher.min.js"></script>
+<script>
+      Pusher.logToConsole = true;
+        var pusher = new Pusher('04e2a9a55dbfdea0b9c5', {
+        forceTLS: true,
+        cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('blereceiver');
+      
+    channel.bind('BleEvent', function(data) {
+//         
+        if(data.type == 'keluar'){
+            $('#tgl_masuk').val(data.data.tgl_masuk);
+            $('#jam_masuk').val(data.data.jam_masuk);
+            $('#tgl_keluar').val(data.data.tgl_keluar);
+            $('#jam_keluar').val(data.data.jam_keluar);
+            $('#selisih_jam').val(data.data.selisih_jam);
+            $('#nomor_polisi').val(data.data.no_polisi);
+            $('#nama_perusahaan').val(data.data.nama_perusahaan);
+            $('#nama_supir').val(data.data.nama_supir);
+            $('#bidang_perusahaan').val(data.data.bidang_perusahaan);
+            $('#total_biaya').html('Rp.'+data.data.total_biaya);
+
+
+            $('#notif').hide();
+            $('#notif').removeClass('alert-danger');
+            $('#notif').removeClass('alert-success');
+            
+
+            $('#notif').addClass(data.data.notif);
+            $('#notif-text').html(data.data.notif_text);
+            $('#notif').show();
+
+        }
+
+           
+    });
 </script>
 @endsection

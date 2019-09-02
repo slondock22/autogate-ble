@@ -32,10 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('master/truk/edit/{id}', ['as' => 'master.truk.edit', 'uses' => 'MasterController@truk_edit']);
 	Route::put('master/truk/update', ['as' => 'master.truk.update', 'uses' => 'MasterController@truk_update']);
 
-
-
-
-
-
 });
+
 
