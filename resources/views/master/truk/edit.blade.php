@@ -22,7 +22,7 @@
                         <form method="post" action="{{ route('master.truk.update') }}" autocomplete="on">
                             @csrf
                             @method('put')
-
+                            <input type="hidden" id="id" name="id_truk" value="{{$truk->id}}">
                             <div class="pl-lg-3">
                                 <h6 class="heading-small text-muted mb-4">{{ __('Informasi Kendaraan') }}</h6>
                                 <div class="form-group{{ $errors->has('no_polisi') ? ' has-danger' : '' }}">

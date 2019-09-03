@@ -29,6 +29,25 @@ class MasterController extends Controller
         return redirect()->route('master.truk')->withStatus(__('Truk berhasil ditambahkan.'));
     }
 
+    public function truk_update(TrukRequest $request, Truk $model)
+    {
+ 
+      $model->where('id',$request->id_truk)->update(
+            ['no_polisi' => $request->no_polisi,
+             'nama_supir' => $request->nama_supir,
+             'nama_perusahaan' => $request->nama_perusahaan,
+             'bidang_perusahaan' => $request->bidang_perusahaan,
+             'uuid' => $request->uuid,
+             'major' => $request->major,
+             'minor' => $request->minor,
+             'is_auth' => $request->is_auth
+             ]
+        );
+
+        return redirect()->route('master.truk')->withStatus(__('Truk berhasil diubah.'));
+
+    }
+
     public function truk_edit($id)
     {
         $truk = Truk::find($id);
