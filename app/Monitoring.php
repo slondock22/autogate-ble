@@ -10,11 +10,12 @@ class Monitoring extends Model
 
     public function truk()
     {
-        return $this->belongsTo('App\Truk','id');
+        return $this->belongsTo('App\Truk','id_truck','id');
     }
 
     public function user()
     {
         return $this->belongsTo('App\User','id');
     }
+    
 }

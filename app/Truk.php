@@ -16,4 +16,5 @@ class Truk extends Model
     {
         return $this->hasMany('App\Monitoring', 'id_truck','id');
     }
+    
 }
