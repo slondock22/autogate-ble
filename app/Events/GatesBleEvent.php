@@ -66,7 +66,7 @@ class GatesBleEvent implements ShouldBroadcast
             ['minor', $minor]
         ])->first();
 
-        dd($truk);
+        // dd($truk);
 
         if($truk){
             $authorize = $truk->is_auth;
