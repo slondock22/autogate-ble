@@ -164,6 +164,7 @@ class GatesBleEvent implements ShouldBroadcast
                 $data = [
                     'tgl_masuk' => date('Y-m-d'),
                     'jam_masuk' => date('H:i:s'),
+                    'image_profile' => '',
                     'notif' => 'alert-danger',
                     'notif_text' => 'Kendaraan Anda Tidak Terdaftar',
                 ];

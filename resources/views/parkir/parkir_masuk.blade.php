@@ -222,7 +222,14 @@
             $('#nomor_polisi').val(data.data.no_polisi);
             $('#nama_perusahaan').val(data.data.nama_perusahaan);
             $('#img-preview').removeAttr('src','');
-            $('#img-preview').attr('src',base_url+'/storage/image/'+data.data.image_profile);
+         
+            if(data.data.image_profile != ''){
+    
+                $('#img-preview').attr('src',base_url+'/storage/image/'+data.data.image_profile);
+            }else{
+       
+                $('#img-preview').attr('src',base_url+'/argon/img/theme/no_img.jpg');
+            }
             $('#cctv_front').removeAttr('src','');
             $('#cctv_front').attr('src',base_url+'/storage/image/truk_front.jpeg');
             $('#cctv_back').removeAttr('src','');
