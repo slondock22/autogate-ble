@@ -76,6 +76,7 @@ class GatesBleEvent implements ShouldBroadcast
         }
 
         if($type == 'masuk'){
+           
             if($authorize == 1){
 
                 $is_parking = Monitoring::where('id_truck',$truk->id)
@@ -152,15 +153,17 @@ class GatesBleEvent implements ShouldBroadcast
                         'notif_text' => 'Tidak Ada Akses Masuk',
                     ];
             }else{
-                $log = new Logging;
-                $log->uuid      = $uuid;
-                $log->major     = $major;
-                $log->minor     = $minor;
-                $log->gate_in   = date('Y-m-d H:i:s');
-                $log->is_auth   = $authorize;
-                $log->save();
+                    $log = new Logging;
+                    $log->uuid      = $uuid;
+                    $log->major     = $major;
+                    $log->minor     = $minor;
+                    $log->gate_in   = date('Y-m-d H:i:s');
+                    $log->is_auth   = $authorize['is_auth'];
+                    $log->save();
 
                 $data = [
+                    'tgl_masuk' => date('Y-m-d'),
+                    'jam_masuk' => date('H:i:s'),
                     'notif' => 'alert-danger',
                     'notif_text' => 'Kendaraan Anda Tidak Terdaftar',
                 ];
