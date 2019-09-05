@@ -32,11 +32,12 @@
                                 <tr>
                                     <th scope="col">{{ __('#') }}</th>
                                     <th scope="col">{{ __('Truk') }}</th>
+                                    <th scope="col">{{ __('TID') }}</th>
                                     <th scope="col">{{ __('Perusahaan') }}</th>
                                     <th scope="col">{{ __('Gate In') }}</th>
                                     <th scope="col">{{ __('Gate Out') }}</th>
                                     <th scope="col">{{ __('Total Jam') }}</th>
-                                    <th scope="col">{{ __('Bayar') }}</th>
+                                    {{-- <th scope="col">{{ __('Bayar') }}</th> --}}
                                     {{-- <th scope="col"></th> --}}
                                 </tr>
                             </thead>
@@ -45,11 +46,12 @@
                                     <tr>
                                         <td>1</td>
                                         <td>{{ $monitoring->truk->no_polisi }}</td>
+                                        <td>{{ $monitoring->truk->no_tid }}</td>
                                         <td>{{ $monitoring->truk->nama_perusahaan }}</td>
                                         <td>{{ $monitoring->gate_in }}</td>
                                         <td>{{ $monitoring->gate_out }}</td>
                                         <td>{{ $monitoring->hours }}</td>
-                                        <td>Rp.{{ $monitoring->price}}</td>
+                                        {{-- <td>Rp.{{ $monitoring->price}}</td> --}}
                                         {{-- <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

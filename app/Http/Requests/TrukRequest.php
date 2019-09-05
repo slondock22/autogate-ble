@@ -29,9 +29,12 @@ class TrukRequest extends FormRequest
             'no_polisi' => [
                 'required', 'max:11'
             ],
-            'nama_supir' => [
+            'no_tid' => [
                 'required'
             ],
+            // 'nama_supir' => [
+            //     'required'
+            // ],
             'nama_perusahaan' => [
                'required', 'min:6'
             ],
@@ -49,7 +52,10 @@ class TrukRequest extends FormRequest
             ],
             'is_auth' => [
                 'required'
-            ]
+            ],
+            // 'image_profile' => [
+            //     'required','image','mimes:jpg,png,jpeg'
+            // ],
         ];
     }
 }

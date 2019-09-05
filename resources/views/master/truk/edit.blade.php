@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('master.truk.update') }}" autocomplete="on">
+                        <form method="post" action="{{ route('master.truk.update') }}" autocomplete="on" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <input type="hidden" id="id" name="id_truk" value="{{$truk->id}}">
@@ -35,7 +35,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('nama_supir') ? ' has-danger' : '' }}">
+                                {{-- <div class="form-group{{ $errors->has('nama_supir') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="nama_supir">{{ __('Nama Supir') }}</label>
                                     <input type="text" name="nama_supir" id="nama_supir" class="form-control form-control-alternative{{ $errors->has('nama_supir') ? ' is-invalid' : '' }}" placeholder="{{ __('Nama Supir') }}" value="{{ $truk->nama_supir }}" required>
 
@@ -44,7 +44,27 @@
                                             <strong>{{ $errors->first('nama_supir') }}</strong>
                                         </span>
                                     @endif
+                                </div> --}}
+                                <div class="form-group{{ $errors->has('no_tid') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="no_tid">{{ __('Nomor TID') }}</label>
+                                    <input type="text" name="no_tid" id="no_tid" class="form-control form-control-alternative{{ $errors->has('no_tid') ? ' is-invalid' : '' }}" placeholder="{{ __('Nomor TID') }}" value="{{ $truk->no_tid }}" required>
+
+                                    @if ($errors->has('no_tid'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('no_tid') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
+
+                                <div class="form-group{{ $errors->has('image_profile') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="image_profile">{{ __('Image Truk') }}</label>
+                                    <input type="file" class="form-control form-control-alternative{{ $errors->has('image_profile') ? ' is-invalid' : '' }}" id="image_profile" name="image_profile" placeholder="Select Image">
+                                <br><button type="button" class="btn btn-sm btn-primary" id="btnChangeImage">Change Image</button>
+                                    <button type="button" class="btn btn-sm btn-danger" id="btnCancel">Cancel</button>                                    
+                                    <img src="{{asset("storage/image")."/".$truk->image_profile}}" id="img-preview" class="img-thumbnail mt-2" style="max-height:200px;">  
+                                    <input type="hidden" name="change_image" id="change_image" value="tidak">                                  
+                                </div>
+
                                 <h6 class="heading-small text-muted mb-4">{{ __('Informasi Perusahaan') }}</h6>
                                 <div class="form-group{{ $errors->has('nama_perusahaan') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="nama_perusahaan">{{ __('Nama Perusahaan') }}</label>
@@ -112,7 +132,7 @@
                                 </div>
                                 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    <button type="submit" id="sbmtUpdate" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -123,4 +143,69 @@
         
         @include('layouts.footers.auth')
     </div>
+    <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
+    <script>
+        $('#image_profile').hide();
+        $('#btnCancel').hide();
+
+        $('#btnChangeImage').click(function(){
+            $('#img-preview').hide();
+            $('#btnChangeImage').hide();
+            $('#image_profile').show();
+            $('#btnCancel').show();
+            $('#change_image').val('ganti');
+        });
+
+        $('#btnCancel').click(function(){
+            $('#img-preview').show();
+            $('#btnChangeImage').show();
+            $('#image_profile').hide();
+            $('#btnCancel').hide();
+            $('#change_image').val('tidak');
+        });
+
+        $('#sbmtUpdate').click(function(){
+            var str = $('#image_profile').val();
+            
+            if(str != ''){
+                var test = str.match(/(.+)\.(.+)/);
+                var filename = test[1];
+                var extension = test[2];
+                var ext = ['jpg','jpeg','png','JPG','JPEG','PNG'];
+                
+                if($.inArray(extension,ext) != -1){
+                    return true;
+                }else{
+                    alert("Upload Image Tidak Sesuai");
+                    return false;
+                }
+            }
+        
+        });
+    </script>
+    <script>
+            function readURL(input) {
+            
+              if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function(e) {
+                  $('#img-preview').attr('src', e.target.result);
+                }
+            
+                $("#img-preview").show();
+                
+                reader.readAsDataURL(input.files[0]);
+              }
+            }
+            
+                // $("#image-profile").change(function() {
+                //     readURL(this);
+                // });
+            
+                $( "#image_profile" ).change(function() {
+                    readURL(this);
+                });
+            
+            </script>
 @endsection

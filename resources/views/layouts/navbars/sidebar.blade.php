@@ -85,12 +85,12 @@
                 </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('parkir.masuk') }}">
-                        <i class="ni ni-planet text-blue"></i> {{ __('Parkir Masuk') }}
+                        <i class="ni ni-planet text-blue"></i> {{ __('Gate In') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('parkir.keluar') }}">
-                        <i class="ni ni-pin-3 text-orange"></i> {{ __('Parkir Keluar') }}
+                        <i class="ni ni-pin-3 text-orange"></i> {{ __('Gate Out') }}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -101,7 +101,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                         <i class="ni ni-circle-08 text-pink"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Master') }}</span>
+                        <span class="nav-link-text">{{ __('Master') }}</span>
                     </a>
 
                     <div class="collapse" id="navbar-examples">

@@ -14,7 +14,7 @@
                                 <h3 class="mb-0">{{ __('Master Truk') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('master.truk.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
+                                <a href="{{ route('master.truk.create') }}" class="btn btn-sm btn-primary">{{ __('Tambah Truk') }}</a>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,8 @@
                                 <tr>
                                     <th scope="col">{{__('#')}}</th>
                                     <th scope="col">{{ __('No Polisi') }}</th>
-                                    <th scope="col">{{ __('Nama Supir') }}</th>
+                                    <th scope="col">{{ __('No TID') }}</th>
+                                    {{-- <th scope="col">{{ __('Nama Supir') }}</th> --}}
                                     <th scope="col">{{ __('Perusahaan') }}</th>
                                     <th scope="col">{{ __('UUID') }}</th>
                                     <th scope="col">{{ __('Major') }}</th>
@@ -51,7 +52,8 @@
                                     <tr>
                                         <td>{{ $i }} @php $i++; @endphp</td>
                                         <td>{{ $truks->no_polisi }}</td>
-                                        <td>{{ $truks->nama_supir }}</td>
+                                        {{-- <td>{{ $truks->nama_supir }}</td> --}}
+                                        <td>{{ $truks->no_tid }}</td>
                                         <td>{{ $truks->nama_perusahaan }}</td>
                                         <td>{{ $truks->uuid }}</td>
                                         <td>{{ $truks->major }}</td>

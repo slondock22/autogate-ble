@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('master.truk.store') }}" autocomplete="on">
+                        <form method="post" action="{{ route('master.truk.store') }}" autocomplete="on" enctype="multipart/form-data" name="frmCreateTruk">
                             @csrf
                             
                             <div class="pl-lg-3">
@@ -34,16 +34,38 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('nama_supir') ? ' has-danger' : '' }}">
+                                {{-- <div class="form-group{{ $errors->has('nama_supir') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="nama_supir">{{ __('Nama Supir') }}</label>
                                     <input type="text" name="nama_supir" id="nama_supir" class="form-control form-control-alternative{{ $errors->has('nama_supir') ? ' is-invalid' : '' }}" placeholder="{{ __('Nama Supir') }}" value="{{ old('nama_supir') }}" required>
 
-                                    @if ($errors->has('nama_supir'))
+                                    @if ($errors->has('nama_supir'))frmCreateTruk
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('nama_supir') }}</strong>
                                         </span>
                                     @endif
+                                </div> --}}
+                                <div class="form-group{{ $errors->has('no_tid') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="no_tid">{{ __('Nomor TID') }}</label>
+                                    <input type="text" name="no_tid" id="no_tid" class="form-control form-control-alternative{{ $errors->has('no_tid') ? ' is-invalid' : '' }}" placeholder="{{ __('Nomor TID') }}" value="{{ old('no_tid') }}" required>
+
+                                    @if ($errors->has('no_tid'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('no_tid') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
+
+                                <div class="form-group{{ $errors->has('image_profile') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="image_profile">{{ __('Image Truk') }}</label>
+                                    <input type="file" class="form-control form-control-alternative{{ $errors->has('image_profile') ? ' is-invalid' : '' }}" id="image_profile" name="image_profile" placeholder="Select Image">
+                                    <img src="" id="img-preview" class="img-thumbnail mt-2" style="max-height:200px; display:none;">                                    
+                                    @if ($errors->has('image_profile'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('image_profile') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
                                 <h6 class="heading-small text-muted mb-4">{{ __('Informasi Perusahaan') }}</h6>
                                 <div class="form-group{{ $errors->has('nama_perusahaan') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="nama_perusahaan">{{ __('Nama Perusahaan') }}</label>
@@ -111,7 +133,7 @@
                                 </div>
                                 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    <button type="submit" class="btn btn-success mt-4" id="sbmtCreate">{{ __('Save') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -122,4 +144,68 @@
         
         @include('layouts.footers.auth')
     </div>
+<script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
+<script src="https://js.pusher.com/4.4/pusher.min.js"></script>
+<script>
+      Pusher.logToConsole = true;
+        var pusher = new Pusher('04e2a9a55dbfdea0b9c5', {
+        forceTLS: true,
+        cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('blereceiver');
+      
+    channel.bind('BleEvent', function(data) {
+        $('#uuid').val(data.uuid);
+        $('#major').val(data.major);
+        $('#minor').val(data.minor);   
+    });
+
+</script>
+<script>
+$('#sbmtCreate').click(function(){
+    var str = $('#image_profile').val();
+    
+    if(str != ''){
+        var test = str.match(/(.+)\.(.+)/);
+        var filename = test[1];
+        var extension = test[2];
+        var ext = ['jpg','jpeg','png','JPG','JPEG','PNG'];
+        
+        if($.inArray(extension,ext) != -1){
+            return true;
+        }else{
+            alert("Upload Image Tidak Sesuai");
+            return false;
+        }
+    }else{
+        alert('Image Tidak Boleh Kosong')
+    }
+   
+});
+
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#img-preview').attr('src', e.target.result);
+    }
+
+    $("#img-preview").show();
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+    // $("#image-profile").change(function() {
+    //     readURL(this);
+    // });
+
+    $( "#image_profile" ).change(function() {
+        readURL(this);
+    });
+
+</script>
 @endsection

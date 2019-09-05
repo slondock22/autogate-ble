@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                         <div class="d-flex justify-content-between">
-                            <a href="#" class="btn btn-sm btn-danger mr-4">{{ __('Parkir Keluar') }}</a>
+                            <a href="#" class="btn btn-sm btn-danger mr-4">{{ __('Gate Out') }}</a>
                         </div>
                     </div>
                     <div class="card-body pt-0 pt-md-4">
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
 
-                            <hr class="my-4" />
+                            {{-- <hr class="my-4" />
 
                             <h6 class="heading-small text-muted mb-1">{{ __('Total Biaya ') }}</h6>
 
@@ -63,7 +63,7 @@
                                 <div class="col-lg-12">
                                     <h1 style="font-size:3em; font-weight:800" id="total_biaya">{{ __('Rp.0,-') }}</h1>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
@@ -84,60 +84,70 @@
                     </div>
                     <div class="card-body">
                        
-                        <h6 class="heading-small text-muted mb-4">{{ __('Informasi Parkir') }}</h6>
-               
-                        <div class="form-group{{ $errors->has('tgl_masuk') ? ' has-danger' : '' }}">
-                            <label class="form-control-label" for="tgl_masuk">{{ __('Tanggal Masuk') }}</label>
-                            <input type="text" name="tgl_masuk" id="tgl_masuk" class="form-control form-control-alternative{{ $errors->has('tgl_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal Masuk') }}" value="" required autofocus>
+                        <h6 class="heading-small text-muted mb-4">{{ __('Informasi Gate') }}</h6>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group{{ $errors->has('tgl_masuk') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="tgl_masuk">{{ __('Tanggal Masuk') }}</label>
+                                        <input type="text" name="tgl_masuk" id="tgl_masuk" class="form-control form-control-alternative{{ $errors->has('tgl_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal Masuk') }}" value="" required autofocus>
 
-                            @if ($errors->has('tgl_masuk'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('tgl_masuk') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group{{ $errors->has('jam_masuk') ? ' has-danger' : '' }}">
-                            <label class="form-control-label" for="jam_masuk">{{ __('Jam Masuk') }}</label>
-                            <input type="text" name="jam_masuk" id="jam_masuk" class="form-control form-control-alternative{{ $errors->has('jam_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Jam Masuk') }}" value="" required>
+                                        @if ($errors->has('tgl_masuk'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('tgl_masuk') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group{{ $errors->has('jam_masuk') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="jam_masuk">{{ __('Jam Masuk') }}</label>
+                                        <input type="text" name="jam_masuk" id="jam_masuk" class="form-control form-control-alternative{{ $errors->has('jam_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Jam Masuk') }}" value="" required>
 
-                            @if ($errors->has('jam_masuk'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('jam_masuk') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group{{ $errors->has('tgl_keluar') ? ' has-danger' : '' }}">
-                            <label class="form-control-label" for="tgl_keluar">{{ __('Tanggal Keluar') }}</label>
-                            <input type="text" name="tgl_keluar" id="tgl_keluar" class="form-control form-control-alternative{{ $errors->has('tgl_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal Keluar') }}" value="" required autofocus>
+                                        @if ($errors->has('jam_masuk'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('jam_masuk') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group{{ $errors->has('tgl_keluar') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="tgl_keluar">{{ __('Tanggal Keluar') }}</label>
+                                        <input type="text" name="tgl_keluar" id="tgl_keluar" class="form-control form-control-alternative{{ $errors->has('tgl_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal Keluar') }}" value="" required autofocus>
 
-                            @if ($errors->has('tgl_keluar'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('tgl_keluar') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group{{ $errors->has('jam_keluar') ? ' has-danger' : '' }}">
-                            <label class="form-control-label" for="jam_keluar">{{ __('Jam Keluar') }}</label>
-                            <input type="text" name="jam_keluar" id="jam_keluar" class="form-control form-control-alternative{{ $errors->has('jam_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Jam Keluar') }}" value="" required>
+                                        @if ($errors->has('tgl_keluar'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('tgl_keluar') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group{{ $errors->has('jam_keluar') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="jam_keluar">{{ __('Jam Keluar') }}</label>
+                                        <input type="text" name="jam_keluar" id="jam_keluar" class="form-control form-control-alternative{{ $errors->has('jam_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Jam Keluar') }}" value="" required>
 
-                            @if ($errors->has('jam_keluar'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('jam_keluar') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group{{ $errors->has('selisih_jam') ? ' has-danger' : '' }}">
-                            <label class="form-control-label" for="selisih_jam">{{ __('Selisih Jam') }}</label>
-                            <input type="text" name="selisih_jam" id="selisih_jam" class="form-control form-control-alternative{{ $errors->has('selisih_jam') ? ' is-invalid' : '' }}" placeholder="{{ __('Selisih Jam') }}" value="" required>
+                                        @if ($errors->has('jam_keluar'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('jam_keluar') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group{{ $errors->has('selisih_jam') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="selisih_jam">{{ __('Selisih Jam') }}</label>
+                                        <input type="text" name="selisih_jam" id="selisih_jam" class="form-control form-control-alternative{{ $errors->has('selisih_jam') ? ' is-invalid' : '' }}" placeholder="{{ __('Selisih Jam') }}" value="" required>
 
-                            @if ($errors->has('selisih_jam'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('selisih_jam') }}</strong>
-                                </span>
-                            @endif
-                        </div>
+                                        @if ($errors->has('selisih_jam'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('selisih_jam') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
            
-    
                         <hr class="my-4" />
 
                         <div class="row">
@@ -155,13 +165,13 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('nama_supir') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="nama_supir">{{ __('Nama Supir') }}</label>
-                                    <input type="text" name="nama_supir" id="nama_supir" class="form-control form-control-alternative{{ $errors->has('nama_supir') ? ' is-invalid' : '' }}" placeholder="{{ __('Nama Supir') }}" value="" required>
+                                <div class="form-group{{ $errors->has('no_tid') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="no_tid">{{ __('Nomor TID') }}</label>
+                                    <input type="text" name="no_tid" id="no_tid" class="form-control form-control-alternative{{ $errors->has('no_tid') ? ' is-invalid' : '' }}" placeholder="{{ __('Nomor TID') }}" value="" required>
                                     
-                                    @if ($errors->has('nama_supir'))
+                                    @if ($errors->has('no_tid'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('nama_supir') }}</strong>
+                                            <strong>{{ $errors->first('no_tid') }}</strong>
                                         </span>
                                     @endif
                                 </div>  
@@ -246,7 +256,8 @@
             $('#selisih_jam').val(data.data.selisih_jam);
             $('#nomor_polisi').val(data.data.no_polisi);
             $('#nama_perusahaan').val(data.data.nama_perusahaan);
-            $('#nama_supir').val(data.data.nama_supir);
+            // $('#nama_supir').val(data.data.nama_supir);
+            $('#no_tid').val(data.data.no_tid);
             $('#bidang_perusahaan').val(data.data.bidang_perusahaan);
             $('#total_biaya').html('Rp.'+data.data.total_biaya);
 
