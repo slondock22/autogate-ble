@@ -87,16 +87,6 @@
                         <h6 class="heading-small text-muted mb-4">{{ __('Informasi Gate') }}</h6>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="form-group{{ $errors->has('tgl_masuk') ? ' has-danger' : '' }}">
-                                        <label class="form-control-label" for="tgl_masuk">{{ __('Tanggal & Jam Masuk') }}</label>
-                                        <input type="text" name="tgl_masuk" id="tgl_masuk" class="form-control form-control-alternative{{ $errors->has('tgl_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal & Jam Masuk') }}" value="" required autofocus>
-
-                                        @if ($errors->has('tgl_masuk'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('tgl_masuk') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
                                     <div class="form-group{{ $errors->has('tgl_keluar') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="tgl_keluar">{{ __('Tanggal & Jam Keluar') }}</label>
                                         <input type="text" name="tgl_keluar" id="tgl_keluar" class="form-control form-control-alternative{{ $errors->has('tgl_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal & Jam Keluar') }}" value="" required autofocus>
@@ -104,6 +94,16 @@
                                         @if ($errors->has('tgl_keluar'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('tgl_keluar') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <div class="form-group{{ $errors->has('tgl_masuk') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="tgl_masuk">{{ __('Tanggal & Jam Masuk') }}</label>
+                                        <input type="text" name="tgl_masuk" id="tgl_masuk" class="form-control form-control-alternative{{ $errors->has('tgl_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal & Jam Masuk') }}" value="" required autofocus>
+
+                                        @if ($errors->has('tgl_masuk'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('tgl_masuk') }}</strong>
                                             </span>
                                         @endif
                                     </div>
