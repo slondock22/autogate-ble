@@ -48,11 +48,11 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h6 class="heading-small text-muted mb-1">{{ __('CCTV DEPAN ') }}</h6>
-                                    <img src="{{ asset('argon') }}/img/theme/no_img.jpg" class="img-thumbnail">
+                                    <img src="{{ asset('argon') }}/img/theme/no_img.jpg" class="img-thumbnail" id="cctv_front">
                                 </div>
                                 <div class="col-lg-6">
                                     <h6 class="heading-small text-muted mb-1">{{ __('CCTV BELAKANG ') }}</h6>
-                                    <img src="{{ asset('argon') }}/img/theme/no_img.jpg" class="img-thumbnail">
+                                    <img src="{{ asset('argon') }}/img/theme/no_img.jpg" class="img-thumbnail" id="cctv_back">
                                 </div>
                             </div>
                         </div>
@@ -223,6 +223,10 @@
             $('#nama_perusahaan').val(data.data.nama_perusahaan);
             $('#img-preview').removeAttr('src','');
             $('#img-preview').attr('src',base_url+'/storage/image/'+data.data.image_profile);
+            $('#cctv_front').removeAttr('src','');
+            $('#cctv_front').attr('src',base_url+'/storage/image/truk_front.jpg');
+            $('#cctv_back').removeAttr('src','');
+            $('#cctv_back').attr('src',base_url+'/storage/image/truk_back.jpg');
             // $('#nama_supir').val(data.data.nama_supir);
             $('#no_tid').val(data.data.no_tid);
             $('#bidang_perusahaan').val(data.data.bidang_perusahaan);
