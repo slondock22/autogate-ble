@@ -88,8 +88,8 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group{{ $errors->has('tgl_masuk') ? ' has-danger' : '' }}">
-                                        <label class="form-control-label" for="tgl_masuk">{{ __('Tanggal Masuk') }}</label>
-                                        <input type="text" name="tgl_masuk" id="tgl_masuk" class="form-control form-control-alternative{{ $errors->has('tgl_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal Masuk') }}" value="" required autofocus>
+                                        <label class="form-control-label" for="tgl_masuk">{{ __('Tanggal & Jam Masuk') }}</label>
+                                        <input type="text" name="tgl_masuk" id="tgl_masuk" class="form-control form-control-alternative{{ $errors->has('tgl_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal & Jam Masuk') }}" value="" required autofocus>
 
                                         @if ($errors->has('tgl_masuk'))
                                             <span class="invalid-feedback" role="alert">
@@ -97,23 +97,9 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group{{ $errors->has('jam_masuk') ? ' has-danger' : '' }}">
-                                        <label class="form-control-label" for="jam_masuk">{{ __('Jam Masuk') }}</label>
-                                        <input type="text" name="jam_masuk" id="jam_masuk" class="form-control form-control-alternative{{ $errors->has('jam_masuk') ? ' is-invalid' : '' }}" placeholder="{{ __('Jam Masuk') }}" value="" required>
-
-                                        @if ($errors->has('jam_masuk'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('jam_masuk') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
                                     <div class="form-group{{ $errors->has('tgl_keluar') ? ' has-danger' : '' }}">
-                                        <label class="form-control-label" for="tgl_keluar">{{ __('Tanggal Keluar') }}</label>
-                                        <input type="text" name="tgl_keluar" id="tgl_keluar" class="form-control form-control-alternative{{ $errors->has('tgl_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal Keluar') }}" value="" required autofocus>
+                                        <label class="form-control-label" for="tgl_keluar">{{ __('Tanggal & Jam Keluar') }}</label>
+                                        <input type="text" name="tgl_keluar" id="tgl_keluar" class="form-control form-control-alternative{{ $errors->has('tgl_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal & Jam Keluar') }}" value="" required autofocus>
 
                                         @if ($errors->has('tgl_keluar'))
                                             <span class="invalid-feedback" role="alert">
@@ -122,19 +108,11 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group{{ $errors->has('jam_keluar') ? ' has-danger' : '' }}">
-                                        <label class="form-control-label" for="jam_keluar">{{ __('Jam Keluar') }}</label>
-                                        <input type="text" name="jam_keluar" id="jam_keluar" class="form-control form-control-alternative{{ $errors->has('jam_keluar') ? ' is-invalid' : '' }}" placeholder="{{ __('Jam Keluar') }}" value="" required>
-
-                                        @if ($errors->has('jam_keluar'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('jam_keluar') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
+                               
+                                <div class="col-lg-6 text-center">
+                                    <img src="{{ asset('argon') }}/img/theme/no_img.jpg"  id="img-preview" class="img-thumbnail" style="max-height:200px;">  
                                 </div>
-                                <div class="col-lg-12">
+                                {{-- <div class="col-lg-12">
                                     <div class="form-group{{ $errors->has('selisih_jam') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="selisih_jam">{{ __('Selisih Jam') }}</label>
                                         <input type="text" name="selisih_jam" id="selisih_jam" class="form-control form-control-alternative{{ $errors->has('selisih_jam') ? ' is-invalid' : '' }}" placeholder="{{ __('Selisih Jam') }}" value="" required>
@@ -145,7 +123,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
            
                         <hr class="my-4" />
@@ -249,13 +227,15 @@
     channel.bind('BleEvent', function(data) {
 //         
         if(data.type == 'keluar'){
-            $('#tgl_masuk').val(data.data.tgl_masuk);
-            $('#jam_masuk').val(data.data.jam_masuk);
-            $('#tgl_keluar').val(data.data.tgl_keluar);
-            $('#jam_keluar').val(data.data.jam_keluar);
+            $('#tgl_masuk').val(data.data.tgl_masuk+' | '+data.data.jam_masuk);
+            // $('#jam_masuk').val(data.data.jam_masuk);
+            $('#tgl_keluar').val(data.data.tgl_keluar+' | '+data.data.jam_keluar);
+            // $('#jam_keluar').val(data.data.jam_keluar);
             $('#selisih_jam').val(data.data.selisih_jam);
             $('#nomor_polisi').val(data.data.no_polisi);
             $('#nama_perusahaan').val(data.data.nama_perusahaan);
+            $('#img-preview').removeAttr('src','');
+            $('#img-preview').attr('src',base_url+'/storage/image/'+data.data.image_profile);
             $('#cctv_front').removeAttr('src','');
             $('#cctv_front').attr('src',base_url+'/storage/image/truk_front.jpeg');
             $('#cctv_back').removeAttr('src','');

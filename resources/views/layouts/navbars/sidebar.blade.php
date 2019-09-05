@@ -119,6 +119,11 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('loggings') }}">
+                        <i class="ni ni-align-left-2 text-default"></i> {{ __('Logs') }}
+                    </a>
+                </li>
             </ul>
             <!-- Divider -->
             <hr class="my-3">

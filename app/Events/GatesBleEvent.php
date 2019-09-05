@@ -13,6 +13,7 @@ use App\Truk;
 use App\Monitoring;
 use Auth;
 use DateTime;
+use App\Logging;
 
 class GatesBleEvent implements ShouldBroadcast
 {
@@ -89,6 +90,16 @@ class GatesBleEvent implements ShouldBroadcast
                     $masuk->save();
     
                     if($masuk){
+                        $log = new Logging;
+                        $log->no_polisi = $truk->no_polisi;
+                        $log->no_tid    = $truk->no_tid;
+                        $log->uuid      = $uuid;
+                        $log->major     = $major;
+                        $log->minor     = $minor;
+                        $log->gate_in   = date('Y-m-d H:i:s');
+                        $log->is_auth   = $authorize;
+                        $log->save();
+
                         $data = [
                             'tgl_masuk' => date('Y-m-d'),
                             'jam_masuk' => date('H:i:s'),
@@ -104,12 +115,30 @@ class GatesBleEvent implements ShouldBroadcast
                     }
                 }else{
                     $data = [
+                        'tgl_masuk' => date('Y-m-d'),
+                        'jam_masuk' => date('H:i:s'),
+                        'no_polisi' => $truk->no_polisi,
+                        // 'nama_supir' => $truk->nama_supir,
+                        'no_tid' => $truk->no_tid,
+                        'image_profile' => $truk->image_profile,
+                        'nama_perusahaan' => $truk->nama_perusahaan,
+                        'bidang_perusahaan' => $truk->bidang_perusahaan,
                         'notif' => 'alert-success',
                         'notif_text' => 'Silahkan Masuk',
                     ];
                 }                       
                
             }elseif($authorize == 0){
+                    $log = new Logging;
+                    $log->no_polisi = $truk->no_polisi;
+                    $log->no_tid    = $truk->no_tid;
+                    $log->uuid      = $uuid;
+                    $log->major     = $major;
+                    $log->minor     = $minor;
+                    $log->gate_in   = date('Y-m-d H:i:s');
+                    $log->is_auth   = $authorize;
+                    $log->save();
+
                     $data = [
                         'tgl_masuk' => date('Y-m-d'),
                         'jam_masuk' => date('H:i:s'),
@@ -123,6 +152,14 @@ class GatesBleEvent implements ShouldBroadcast
                         'notif_text' => 'Tidak Ada Akses Masuk',
                     ];
             }else{
+                $log = new Logging;
+                $log->uuid      = $uuid;
+                $log->major     = $major;
+                $log->minor     = $minor;
+                $log->gate_in   = date('Y-m-d H:i:s');
+                $log->is_auth   = $authorize;
+                $log->save();
+
                 $data = [
                     'notif' => 'alert-danger',
                     'notif_text' => 'Kendaraan Anda Tidak Terdaftar',
@@ -155,6 +192,15 @@ class GatesBleEvent implements ShouldBroadcast
             $keluar->save();
 
             if($keluar){
+                    $log = new Logging;
+                    $log->no_polisi = $truk->no_polisi;
+                    $log->no_tid    = $truk->no_tid;
+                    $log->uuid      = $uuid;
+                    $log->major     = $major;
+                    $log->minor     = $minor;
+                    $log->gate_out   = date('Y-m-d H:i:s');
+                    $log->is_auth   = $authorize;
+                    $log->save();
 
                     $data = [
                         'tgl_masuk' => date('Y-m-d', strtotime($keluar->gate_in)),

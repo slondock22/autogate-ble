@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::delete('master/truk/destroy/{id}', ['as' => 'master.truk.destroy', 'uses' => 'MasterController@truk_destroy']);
 	Route::get('master/truk/edit/{id}', ['as' => 'master.truk.edit', 'uses' => 'MasterController@truk_edit']);
 	Route::put('master/truk/update', ['as' => 'master.truk.update', 'uses' => 'MasterController@truk_update']);
+	Route::get('log', ['as' => 'loggings', 'uses' => 'LoggingController@index']);	
+
 
 });
 

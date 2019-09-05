@@ -36,21 +36,22 @@
                                     <th scope="col">{{ __('Perusahaan') }}</th>
                                     <th scope="col">{{ __('Gate In') }}</th>
                                     <th scope="col">{{ __('Gate Out') }}</th>
-                                    <th scope="col">{{ __('Total Jam') }}</th>
+                                    {{-- <th scope="col">{{ __('Total Jam') }}</th> --}}
                                     {{-- <th scope="col">{{ __('Bayar') }}</th> --}}
                                     {{-- <th scope="col"></th> --}}
                                 </tr>
                             </thead>
                             <tbody>
+                                @php $i=1; @endphp
                                 @foreach ($monitorings as $monitoring)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $i }} @php $i++; @endphp</td>
                                         <td>{{ $monitoring->truk->no_polisi }}</td>
                                         <td>{{ $monitoring->truk->no_tid }}</td>
                                         <td>{{ $monitoring->truk->nama_perusahaan }}</td>
                                         <td>{{ $monitoring->gate_in }}</td>
                                         <td>{{ $monitoring->gate_out }}</td>
-                                        <td>{{ $monitoring->hours }}</td>
+                                        {{-- <td>{{ $monitoring->hours }}</td> --}}
                                         {{-- <td>Rp.{{ $monitoring->price}}</td> --}}
                                         {{-- <td class="text-right">
                                             <div class="dropdown">
