@@ -257,9 +257,9 @@
             $('#nomor_polisi').val(data.data.no_polisi);
             $('#nama_perusahaan').val(data.data.nama_perusahaan);
             $('#cctv_front').removeAttr('src','');
-            $('#cctv_front').attr('src',base_url+'/storage/image/truk_front.jpg');
+            $('#cctv_front').attr('src',base_url+'/storage/image/truk_front.jpeg');
             $('#cctv_back').removeAttr('src','');
-            $('#cctv_back').attr('src',base_url+'/storage/image/truk_back.jpg');
+            $('#cctv_back').attr('src',base_url+'/storage/image/truk_back.jpeg');
             // $('#nama_supir').val(data.data.nama_supir);
             $('#no_tid').val(data.data.no_tid);
             $('#bidang_perusahaan').val(data.data.bidang_perusahaan);
