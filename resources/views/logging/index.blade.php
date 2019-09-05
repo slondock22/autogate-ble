@@ -57,7 +57,7 @@
                                         <td>
                                             @if($logging->is_auth == 1)
                                             <span class="badge badge-success">{{__('Authorized')}}</span>
-                                            @elseif($logging->is_auth == 2)
+                                            @elseif($logging->is_auth == 0)
                                             <span class="badge badge-danger">{{__('Not Authorized')}}</span>
                                             @else 
                                             <span class="badge badge-default">{{__('Unregistered')}}</span>
