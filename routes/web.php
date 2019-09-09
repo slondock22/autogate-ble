@@ -17,7 +17,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/', ['as' => 'parkir.masuk', 'uses' => 'ParkirController@parkir_masuk_view']);
+	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
@@ -32,7 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('master/truk/edit/{id}', ['as' => 'master.truk.edit', 'uses' => 'MasterController@truk_edit']);
 	Route::put('master/truk/update', ['as' => 'master.truk.update', 'uses' => 'MasterController@truk_update']);
 	Route::get('log', ['as' => 'loggings', 'uses' => 'LoggingController@index']);	
-
 
 });
 

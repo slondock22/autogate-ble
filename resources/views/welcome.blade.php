@@ -1,22 +1,25 @@
-@extends('layouts.app', ['class' => 'bg-default'])
+@extends('layouts.app', ['class' => 'bg-white'])
 
 @section('content')
-    <div class="header bg-gradient-primary py-7 py-lg-8">
-        <div class="container">
-            <div class="header-body text-center mt-7 mb-7">
-                <div class="row justify-content-center">
-                    <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Welcome to Argon Dashboard FREE Laravel Live Preview.') }}</h1>
+    <div class="header bg-gradient-blues pb-5 pt-5 pt-md-5">
+    </div>
+
+    <div class="container-fluid mt--4">
+            <div class="row">
+                <div class="col-xl-4 order-xl-1 mt-5 mb-xl-0">
+                    <div class="card card-profile">
+                        <div class="col-lg-12 text-center">
+                        <img src="{{ asset('argon') }}/img/theme/workflow.jpeg" style="width:1300px; height:auto">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="separator separator-bottom separator-skew zindex-100">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-        </div>
     </div>
-
-    <div class="container mt--10 pb-5"></div>
+    {{-- <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <img src="{{ asset('argon') }}/img/theme/workflow.jpeg" style="height:auto">
+            </div>
+        </div>
+    </div> --}}
 @endsection
